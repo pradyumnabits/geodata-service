@@ -57,7 +57,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       #Run Tests
       - name: Run Tests
-        run: mvn clean -B test
+        run: mvn clean -B test install
   #Lint Job
   lint-job:
     name: Lint Job - PMD 
