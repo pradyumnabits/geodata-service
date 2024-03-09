@@ -2,12 +2,12 @@ name: CI/CD Pipeline
 on:
   #Manually trigger workflow runs
   workflow_dispatch:
-  #Trigger the workflow on push from the main branch
+  #Trigger the workflow on push from the master branch
   push:
     branches:
       - master
 jobs:
-  #Test's job
+  #Build Job
   build-job:
     name: Build Job
     #Run on Ubuntu using the latest version
@@ -32,7 +32,7 @@ jobs:
       #Run Build
       - name: Run Build
         run: mvn clean -B package -DskipTests --file pom.xml
-  #Test's job
+  #Test Job
   test-job:
     needs: build-job
     name: Test Job - JUnit
@@ -64,7 +64,7 @@ jobs:
         with:
           name: Package
           path: staging
-  #Lint's job
+  #Lint Job
   lint-job:
     name: Lint Job - PMD 
     runs-on: ubuntu-latest
@@ -75,7 +75,7 @@ jobs:
 
       - name: Run PMD Lint Opertaion
         run: mvn pmd:check
-  #Sonar's Job
+  #Sonar Job
   sonar:
     #Depends on test's job
     needs: lint-job
