@@ -7,7 +7,6 @@ on:
     branches:
       - master
 jobs:
-  #Build Job
   build-job:
     name: Build Job
     #Run on Ubuntu using the latest version
